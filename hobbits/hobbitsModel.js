@@ -10,7 +10,7 @@ module.exports = {
 
 async function insert(hobbit) {
   const [id] = await db('hobbits').insert(hobbit);
-  db('hobbits').where({ id }).first();
+  // db('hobbits').where({ id }).first();
   return findById(id);
 }
 

@@ -36,7 +36,7 @@ describe('server.js', () => {
         afterEach(async () => {
             await db('hobbits').truncate();
         })
-        it('should return hobbits', async () => {
+        it('should hit endpoint', async () => {
             const res = await request(server).get('/hobbits');
             expect(res.status).toBe(200);
             expect(res.body).toEqual([]);

@@ -30,21 +30,24 @@ describe('the hobbits model', () => {
     });
 
     describe('findById()', () => {
-        it('should find the hobbit by ID', async () => {
-            
-            // const hobbit = Hobbits.findById(1);
-            // expect(hobbit).toEqual({ id: 1 });
+        afterEach(async () => {
+            // cleanup
+            await db('hobbits').truncate();
+        });
+
+        it('finds a hobbit by id', async () => {
             // set up
             await db('hobbits').insert([
                 { name: 'Sam' },
-                { name: 'Frodo' }
+                { name: 'Frodo' },
             ]);
 
             const hobbit = await Hobbits.findById(2);
+
             expect(hobbit.name).toBe('Frodo');
         });
 
-        it('returns undefined of invalid id', async () => {
+        if('returns undefined on invalid id', async () => {
             const hobbit = await Hobbits.findById(2);
 
             expect(hobbit).toBeUndefined();
